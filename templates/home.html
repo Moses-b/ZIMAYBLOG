@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Moses Zegbah Zimay | Premium Consultant for Finance, Security & E-commerce{% endblock %}
+{% block meta_description %}Premium consulting in Ivory Coast for accounting, compliance, digital security, WordPress, Shopify and business growth across Africa.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="hero-grid">
+    <div class="hero-copy reveal">
+      <div class="section-tag">Secure Finance. Smart Growth.</div>
+      <h1>Build a stronger business with compliance, digital security and premium execution.</h1>
+      <p>Moses Zegbah Zimay helps African SMEs, NGOs, founders and international organizations strengthen accounting operations, secure digital assets, launch high-converting websites and structure scalable business growth.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Book a consultation</a>
+        <a class="btn btn-secondary" href="#services">Explore services</a>
+        <a class="btn btn-secondary" href="{% static cv_url %}" target="_blank" rel="noreferrer">Download CV</a>
+      </div>
+      <div class="hero-notes">
+        <span class="hero-note">Based in Ivory Coast</span>
+        <span class="hero-note">French / English</span>
+        <span class="hero-note">OHADA, SYCEBNL, IFRS</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="cyber-panel">
+        <div class="cyber-stack">
+          <div class="status-card">
+            <span>Core positioning</span>
+            <strong>Hybrid consultant for finance and digital performance</strong>
+            <p>Rare expertise spanning accounting discipline, web delivery, cybersecurity awareness and e-commerce advisory.</p>
+          </div>
+          <div class="status-card">
+            <span>High-trust sectors</span>
+            <strong>NGOs, organizations, SMEs and ambitious founders</strong>
+            <p>Designed for clients who need credibility, reporting rigor and secure digital execution.</p>
+          </div>
+          <div class="status-card">
+            <span>Tools</span>
+            <strong>SAGE, QuickBooks, Xero, WordPress and Shopify</strong>
+            <p>Operational support that connects finance systems, digital assets and business visibility.</p>
+          </div>
+          <div class="feature-card compact">
+            <div class="section-tag">Security Badge</div>
+            <h3>Protected growth mindset</h3>
+            <p>Finance control, website resilience and business clarity working together to reduce risk and increase trust.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-block" id="results">
+  <div class="metrics-grid reveal">
+    {% for metric in metrics %}
+      <article class="metric-card">
+        <div class="metric-value">{{ metric.value }}</div>
+        <p>{{ metric.label }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="split-grid">
+    <div class="feature-card reveal">
+      <div class="section-tag">Proof of Credibility</div>
+      <h2>Hover over the credentials to preview and open each supporting document.</h2>
+      <p class="section-intro">The diplomas now behave like interactive cards. This makes the section feel more premium and lets future certificates be added in the same style.</p>
+      <div class="credential-grid">
+        {% for credential in credentials %}
+          <article class="credential-card">
+            <img src="{% static credential.image %}" alt="{{ credential.title }}" />
+            <div class="credential-overlay">
+              <div class="preview-badge">{{ credential.date }}</div>
+              <h3>{{ credential.title }}</h3>
+              <p>{{ credential.issuer }}</p>
+              <p>{{ credential.summary }}</p>
+              <a class="card-link" href="{% static credential.link %}" target="_blank" rel="noreferrer">{{ credential.cta }}</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="section-tag">Portfolio</div>
+      <h3>Existing digital presence available online.</h3>
+      <p>Moses already has a live online portfolio. This site now complements that presence with a stronger premium consulting narrative, tighter positioning and better business conversion structure.</p>
+      <div class="contact-actions" style="margin-top: 22px;">
+        <a class="btn btn-primary" href="{{ portfolio_url }}" target="_blank" rel="noreferrer">Open Portfolio</a>
+        <a class="btn btn-secondary" href="{% static cv_url %}" target="_blank" rel="noreferrer">Open CV PDF</a>
+      </div>
+      <ul class="clean-list">
+        <li>Better positioning for NGOs, SMEs, international organizations and founders</li>
+        <li>Clearer offer packaging for websites, maintenance, compliance and advisory</li>
+        <li>Stronger proof stack through credential and downloadable CV access</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-block" id="about">
+  <div class="split-grid">
+    <div class="reveal">
+      <div class="section-tag">About</div>
+      <h2>Credibility built at the intersection of finance discipline and digital execution.</h2>
+      <p class="section-intro">Moses Zegbah Zimay is a consultant based in Ivory Coast with a profile that is especially valuable for organizations operating in complex, high-trust environments. His background includes accounting support, compliance awareness, digital security thinking and website delivery for business growth.</p>
+      <ul class="clean-list">
+        <li>Accounting Assistant experience at the Inter-African Coffee Organization</li>
+        <li>Exposure to multi-currency accounting environments including XOF and EUR</li>
+        <li>Practical understanding of bank reconciliation, budgeting, audit support and financial reporting</li>
+        <li>Working knowledge of OHADA, SYCEBNL and IFRS-oriented environments</li>
+      </ul>
+    </div>
+    <div class="feature-card reveal">
+      <div class="section-tag">Authority Snapshot</div>
+      <h3>Trusted for operations that must be both clean and secure.</h3>
+      <p>Whether the challenge is a donor-facing finance process, a business website that needs more credibility, or a digital operation that needs stronger protection, the focus remains the same: create systems that are reliable, professional and growth-ready.</p>
+      <div class="service-meta">
+        <span class="badge">Finance and Compliance</span>
+        <span class="badge">Digital Security</span>
+        <span class="badge">WordPress and Shopify</span>
+        <span class="badge">Business Advisory</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-block" id="services">
+  <div class="section-tag">Services</div>
+  <h2>Premium services designed for trust, resilience and measurable business progress.</h2>
+  <p class="section-intro">Every offer is structured around a simple promise: protect the business, strengthen the numbers and create better growth conditions.</p>
+  <div class="services-grid reveal">
+    {% for service in services %}
+      <article class="feature-card">
+        <span class="pill">{{ service.eyebrow }}</span>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        <div class="service-price">{{ service.price }}</div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block" id="why-choose">
+  <div class="split-grid">
+    <div class="feature-card reveal">
+      <div class="section-tag">Why Choose Me</div>
+      <h2>A rare profile for organizations that need both rigor and agility.</h2>
+      <ul class="clean-list">
+        {% for strength in strengths %}
+          <li>{{ strength }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="feature-card reveal">
+      <div class="section-tag">Call Us 24/7</div>
+      <h3>Need support on an urgent finance, compliance or digital issue?</h3>
+      <p>For active projects and advisory missions, responsive support helps reduce downtime, clarify decisions quickly and protect business continuity.</p>
+      <div class="contact-actions" style="margin-top: 22px;">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?text=Hello%20Moses%2C%20I%20need%20help%20with%20my%20business%20or%20website." target="_blank" rel="noreferrer">Open WhatsApp</a>
+        <a class="btn btn-secondary" href="#contact">Request a callback</a>
+      </div>
+      <div class="service-meta">
+        <span class="badge">Fast response mindset</span>
+        <span class="badge">Security-aware advisory</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-block" id="pricing">
+  <div class="section-tag">Pricing</div>
+  <h2>Clear starting points for premium engagements.</h2>
+  <p class="section-intro">Pricing is intentionally positioned for serious businesses that want trust, quality execution and expert support rather than generic low-cost delivery.</p>
+  <div class="pricing-grid reveal">
+    {% for plan in pricing %}
+      <article class="feature-card pricing-card{% if forloop.counter == 2 %} featured{% endif %}">
+        <div class="section-tag">{{ plan.name }}</div>
+        <div class="pricing-price">{{ plan.price }}</div>
+        <p>{{ plan.description }}</p>
+        <ul class="clean-list">
+          {% for feature in plan.features %}
+            <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="cta-banner reveal">
+    <div>
+      <div class="section-tag">Security First</div>
+      <h2>Protect the business while building the next stage of growth.</h2>
+      <p class="section-intro">The strongest brands are not only visible. They are financially disciplined, operationally credible and digitally secure.</p>
+    </div>
+    <a class="btn btn-primary" href="#contact">Start your project</a>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-tag">Testimonials</div>
+  <h2>Professional clients value clarity, reliability and high-trust execution.</h2>
+  <div class="testimonials-grid reveal">
+    {% for item in testimonials %}
+      <article class="feature-card testimonial-card">
+        <p>"{{ item.quote }}"</p>
+        <div class="author-line">{{ item.name }}<span>{{ item.role }}</span></div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-tag">Blog</div>
+  <h2>SEO-ready insights on compliance, NGO finance, digital security and African e-commerce.</h2>
+  <p class="section-intro">The blog is designed to strengthen authority, capture search traffic and demonstrate deep practical understanding of the client sectors Moses serves.</p>
+  <div class="blog-grid reveal">
+    {% for post in posts %}
+      <article class="feature-card">
+        <span class="pill">{{ post.category }}</span>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt }}</p>
+        <div class="card-meta">
+          <span>{{ post.date }}</span>
+          <span>{{ post.read_time }}</span>
+        </div>
+        <a class="text-link" href="{% url 'blog:blog_detail' post.id %}">Read article</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block" id="contact">
+  <div class="contact-shell">
+    <div class="contact-card reveal">
+      <div class="section-tag">Contact</div>
+      <h2>Ready to secure your operations and accelerate business growth?</h2>
+      <p class="section-intro">Whether you need a premium website, stronger accounting control, a safer digital environment or business structuring support, this is the right place to start the conversation.</p>
+      <div class="contact-list">
+        <div class="contact-item">
+          <strong>Location</strong>
+          <span>Ivory Coast, serving clients across Africa and international networks</span>
+        </div>
+        <div class="contact-item">
+          <strong>Support style</strong>
+          <span>Consulting, retainers, project delivery and advisory sessions</span>
+        </div>
+        <div class="contact-item">
+          <strong>Primary CTA</strong>
+          <span>Use the form or open WhatsApp for a fast project discussion</span>
+        </div>
+      </div>
+      <div class="contact-actions" style="margin-top: 24px;">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?text=Hello%20Moses%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer">WhatsApp CTA</a>
+        <a class="btn btn-secondary" href="/blog/">Read the blog</a>
+      </div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="section-tag">Project Brief</div>
+      <form class="contact-form" method="post" action="/">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your name or organization" required />
+        <input type="email" name="email" placeholder="Business email" required />
+        <input type="text" name="service" placeholder="Service needed: website, accounting, security, consulting" />
+        <textarea name="message" rows="6" placeholder="Tell us about your business, your challenge and your timeline." required></textarea>
+        <button class="btn btn-primary" type="submit">Send project request</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
