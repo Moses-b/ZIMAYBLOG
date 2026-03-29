@@ -23,8 +23,8 @@ services:
 # 3. Enable SSL redirection if needed and set `SECURE_SSL_REDIRECT=True` in env.
 
 # IMPORTANT: Django App Module Configuration
-# - The Django app is named 'blog' (not 'app')
-# - INSTALLED_APPS in settings.py: 'blog'
+# - The Django app is named 'app'
+# - INSTALLED_APPS in settings.py: 'app'
 # - DJANGO_SETTINGS_MODULE: zimayblog.settings
 # - WSGI module: zimayblog.wsgi (variable: application or app)
-# - If you see "ModuleNotFoundError: No module named 'app'", verify INSTALLED_APPS contains 'blog'
+# - Render will find the app module correctly for deployment

@@ -3,7 +3,7 @@
 {% block meta_description %}{{ post.excerpt }}{% endblock %}
 {% block content %}
 <section class="page-hero">
-  <a class="pill" href="{% url 'blog:blog_list' %}">{{ ui.back_to_blog }}</a>
+  <a class="pill" href="{% url 'app:blog_list' %}">{{ ui.back_to_blog }}</a>
   <div class="post-hero">
     <div>
       <div class="section-tag">{{ post.category }}</div>
@@ -32,7 +32,7 @@
   <div class="contact-shell">
     <div class="contact-card">
       <div class="section-tag">{{ ui.article_comments_title }}</div>
-      <form class="contact-form" method="post" action="{% url 'blog:blog_detail' post.slug %}">
+      <form class="contact-form" method="post" action="{% url 'app:blog_detail' post.slug %}">
         {% csrf_token %}
         <input type="text" name="name" placeholder="{{ ui.article_comment_name }}" required />
         <input type="email" name="email" placeholder="{{ ui.article_comment_email }}" required />

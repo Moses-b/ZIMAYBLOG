@@ -22,7 +22,7 @@
           <span>{{ post.date }}</span>
           <span>{{ post.read_time }}</span>
         </div>
-        <a class="text-link" href="{% url 'blog:blog_detail' post.slug %}">{{ ui.read_article }}</a>
+        <a class="text-link" href="{% url 'app:blog_detail' post.slug %}">{{ ui.read_article }}</a>
       </article>
     {% endfor %}
   </div>
@@ -49,7 +49,7 @@
     </div>
     <div class="contact-card reveal">
       <div class="section-tag">{{ ui.community_tag }}</div>
-      <form class="contact-form" method="post" action="{% url 'blog:blog_list' %}">
+      <form class="contact-form" method="post" action="{% url 'app:blog_list' %}">
         {% csrf_token %}
         <input type="text" name="name" placeholder="{{ ui.community_name }}" required />
         <input type="email" name="email" placeholder="{{ ui.community_email }}" required />

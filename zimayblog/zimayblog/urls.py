@@ -36,5 +36,5 @@ urlpatterns = [
     path('project/', views.project, name='project'),
     path('gallery/', views.gallery, name='gallery'),
     path('contact/', views.contact, name='contact'),
-    path('blog/', include('blog.urls')),
+    path('blog/', include('app.urls')),
 ]
