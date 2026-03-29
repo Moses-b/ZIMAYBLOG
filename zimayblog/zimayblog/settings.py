@@ -70,8 +70,15 @@ ALLOWED_HOSTS = ["zimayblog.onrender.com", "127.0.0.1"]
 # Vous pouvez utiliser la variable d'environnement ALLOWED_HOSTS pour ajouter d'autres hôtes si besoin
 ALLOWED_HOSTS.extend(_env_to_list("ALLOWED_HOSTS"))
 
-
-
+# Security settings for production
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True

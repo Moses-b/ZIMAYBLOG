@@ -3,9 +3,9 @@ services:
     name: zimayblog-web
     env: python
     region: oregon
-    branch: master
-    buildCommand: pip install -r zimayblog/requirements.txt
-    startCommand: gunicorn zimayblog.wsgi
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn zimayblog.zimayblog.wsgi
     envVars:
       - key: DISABLE_COLLECTSTATIC
         value: 1
