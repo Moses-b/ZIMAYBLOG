@@ -6,7 +6,7 @@ services:
     branch: main
     root: zimayblog
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app.wsgi:app --workers 3 --log-file -
+    startCommand: gunicorn zimayblog.wsgi:app --workers 3 --log-file -
     envVars:
       - key: DISABLE_COLLECTSTATIC
         value: 1
