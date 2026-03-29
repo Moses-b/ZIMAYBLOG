@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
 from urllib.parse import parse_qs, urlparse
 
-from blog.models import (
+from app.models import (
     ContactLead,
     CourseCategory,
     CourseComment,
@@ -24,7 +24,7 @@ from blog.models import (
     ProjectItem,
     normalize_youtube_url,
 )
-from blog.services import get_public_posts
+from app.services import get_public_posts
 from .forms import SignupForm
 from .localization import (
     DEFAULT_LANGUAGE,

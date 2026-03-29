@@ -1,1 +1,1 @@
-web: gunicorn zimayblog.wsgi --workers 3 --log-file -
+web: gunicorn zimayblog.wsgi:application --workers 3 --log-file -

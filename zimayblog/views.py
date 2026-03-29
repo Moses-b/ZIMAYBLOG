@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from blog.content import POSTS
-from blog.models import ContactLead
+from app.content import POSTS
+from app.models import ContactLead
 
 
 def home(request):
