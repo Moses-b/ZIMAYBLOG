@@ -93,7 +93,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
+    'blog',  # NOTE: The main Django app module is 'blog' (not 'app')
 ]
 
 MIDDLEWARE = [
