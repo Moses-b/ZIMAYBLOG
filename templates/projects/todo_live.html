@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Todo List Live{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'blog/projects/todo/style.css' %}">
+{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="section-tag">{{ ui.projects_live_badge }}</div>
+  <h1>Ma Todo List</h1>
+  <p class="section-intro">Application TODO simple et rapide pour gerer les taches quotidiennes.</p>
+  <div class="contact-actions" style="margin-top: 18px;">
+    <a class="btn btn-secondary" href="/projects/">{{ ui.projects_title }}</a>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="todo-demo-shell reveal">
+    <div class="todo-demo-card" aria-labelledby="todo-title">
+      <header class="todo-demo-header">
+        <div>
+          <p class="todo-demo-eyebrow">MOSES productif APP</p>
+          <h2 id="todo-title">Ma todo list</h2>
+          <p class="todo-demo-subtitle">Ajoutez une tache, gardez le cap, terminez sans friction.</p>
+        </div>
+
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <label class="sr-only" for="todo-input">Nouvelle tache</label>
+          <input
+            id="todo-input"
+            name="title"
+            type="text"
+            maxlength="120"
+            placeholder="Ajouter une tache..."
+            aria-label="Ajouter une tache"
+            required
+          >
+          <button type="submit" aria-label="Ajouter la tache">+</button>
+        </form>
+      </header>
+
+      <section class="todo-body" aria-live="polite">
+        <ul id="todo-list" class="todo-list"></ul>
+        <div id="empty-state" class="empty-state">
+          <p>Votre liste est vide. Commencez avec une premiere tache.</p>
+        </div>
+      </section>
+
+      <footer class="todo-footer">
+        <p id="task-counter">0 tache restante</p>
+      </footer>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+  <script src="{% static 'blog/projects/todo/app.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ ui.courses_signup }}{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="section-tag">{{ ui.courses_title }}</div>
+  <h1>{{ ui.courses_signup }}</h1>
+  <p class="section-intro">{{ ui.courses_intro }}</p>
+</section>
+
+<section class="section-block">
+  <div class="auth-shell">
+    <div class="contact-card reveal">
+      <div class="section-tag">{{ ui.courses_title }}</div>
+      <form class="contact-form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password1" placeholder="Password" required />
+        <input type="password" name="password2" placeholder="Confirm password" required />
+        <button class="btn btn-primary" type="submit">{{ ui.courses_signup }}</button>
+      </form>
+      <div class="contact-actions" style="margin-top: 18px;">
+        <a class="btn btn-secondary" href="{% url 'login' %}">{{ ui.courses_login }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

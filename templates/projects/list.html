@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}{{ ui.projects_title }}{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="section-tag">{{ ui.projects_title }}</div>
+  <h1>{{ ui.projects_heading }}</h1>
+  <p class="section-intro">{{ ui.projects_intro }}</p>
+  <div class="project-filters">
+    <a class="project-filter-link{% if not selected_project_type %} is-active{% endif %}" href="/projects/">
+      {{ ui.projects_filter_all }}
+    </a>
+    <a class="project-filter-link{% if selected_project_type == 'live' %} is-active{% endif %}" href="/projects/?type=live">
+      {{ ui.projects_filter_live }} ({{ live_count }})
+    </a>
+    <a class="project-filter-link{% if selected_project_type == 'project' %} is-active{% endif %}" href="/projects/?type=project">
+      {{ ui.projects_filter_project }} ({{ project_count }})
+    </a>
+  </div>
+</section>
+
+<section class="section-block">
+  {% if projects %}
+    <div class="blog-grid reveal">
+      {% for item in projects %}
+        <article class="feature-card">
+          {% if item.cover_url %}
+            <img class="project-card-media" src="{{ item.cover_url }}" alt="{{ item.title }}">
+          {% else %}
+            <div class="project-card-media"></div>
+          {% endif %}
+          <span class="pill">{{ item.category_label }}</span>
+          <h3 style="margin-top: 10px;">{{ item.title }}</h3>
+          {% if item.summary %}
+            <p style="margin-top: 8px;">{{ item.summary }}</p>
+          {% endif %}
+          {% if item.description %}
+            <p style="margin-top: 8px;">{{ item.description }}</p>
+          {% endif %}
+          <div class="project-actions">
+            {% if item.live_url %}
+              <a class="btn btn-primary" href="{{ item.live_url }}" {% if item.live_url|slice:":1" != "/" %}target="_blank" rel="noreferrer"{% endif %}>{{ ui.projects_open_live }}</a>
+            {% endif %}
+            {% if item.source_url %}
+              <a class="btn btn-secondary" href="{{ item.source_url }}" target="_blank" rel="noreferrer">{{ ui.projects_open_source }}</a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="feature-card">
+      <p>{{ ui.projects_empty }}</p>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

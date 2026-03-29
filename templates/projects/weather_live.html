@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ ui.projects_weather_heading }}{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'blog/projects/weather/style.css' %}">
+{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="section-tag">{{ ui.projects_live_badge }}</div>
+  <h1>{{ ui.projects_weather_heading }}</h1>
+  <p class="section-intro">{{ ui.projects_weather_intro }}</p>
+  <div class="contact-actions" style="margin-top: 18px;">
+    <a class="btn btn-secondary" href="/projects/">{{ ui.projects_title }}</a>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="weather-demo-shell reveal">
+    <div class="weather-demo-container">
+      <div class="weather-search-container">
+        <input type="text" id="cityInput" placeholder="Ville ou Pays..." />
+        <button id="searchBtn" type="button">Rechercher</button>
+      </div>
+
+      <div class="weather-info" id="infoBox">
+        <h2 class="city" id="cityName">---</h2>
+        <p id="dateText"></p>
+        <div id="iconContainer">☁</div>
+        <div class="temp"><span id="tempValue">--</span>°C</div>
+        <p id="weatherDesc" style="text-transform: capitalize;">---</p>
+
+        <div class="details">
+          <div class="col">
+            <p><span id="humidity">--</span>%</p>
+            <span>Humidite</span>
+          </div>
+          <div class="col">
+            <p><span id="wind">--</span> km/h</p>
+            <span>Vent</span>
+          </div>
+        </div>
+      </div>
+
+      <p id="error" class="weather-error">Ville non trouvee.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+  <script src="{% static 'blog/projects/weather/script.js' %}"></script>
+{% endblock %}
