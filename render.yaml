@@ -6,7 +6,7 @@ services:
     branch: main
     root: zimayblog
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn zimayblog.wsgi:application --workers 3 --log-file -
+    startCommand: gunicorn app.wsgi:app --workers 3 --log-file -
     envVars:
       - key: DISABLE_COLLECTSTATIC
         value: 1
@@ -26,6 +26,6 @@ services:
 # - The Django app is named 'app'
 # - INSTALLED_APPS in settings.py: 'app'
 # - DJANGO_SETTINGS_MODULE: zimayblog.settings
-# - WSGI module: zimayblog.wsgi (variable: application or app)
-# - Alternative: gunicorn app.wsgi:app (if using app-level wsgi.py)
-# - Render will find the app module correctly for deployment
+# - WSGI module: app.wsgi (variable: app)
+# - Alternative: gunicorn zimayblog.wsgi:application
+# - Render uses Procfile for deployment, which now uses app.wsgi:app
