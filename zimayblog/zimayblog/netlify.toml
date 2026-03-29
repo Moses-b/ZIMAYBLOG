@@ -1,0 +1,11 @@
+[build]
+  command = "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+  publish = "staticfiles"
+
+[functions]
+  included_files = ["zimayblog/**"]
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/wsgi"
+  status = 200

@@ -64,24 +64,14 @@ SECRET_KEY = os.getenv(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = _env_to_bool("DEBUG", default=True)
+DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app", ".netlify.app"]
-vercel_url = os.getenv("VERCEL_URL")
-if vercel_url:
-    ALLOWED_HOSTS.append(vercel_url)
-netlify_site_url = os.getenv("[![Netlify Status](https://api.netlify.com/api/v1/badges/8329ca2a-b24b-4352-a464-32c0ecf70e0f/deploy-status)](https://app.netlify.com/projects/superlative-selkie-b71779/deploys)")
-if netlify_site_url:
-    netlify_host = urlparse(netlify_site_url).hostname
-    if netlify_host:
-        ALLOWED_HOSTS.append(netlify_host)
+ALLOWED_HOSTS = ["zimayblog.onrender.com", "127.0.0.1"]
+# Vous pouvez utiliser la variable d'environnement ALLOWED_HOSTS pour ajouter d'autres hôtes si besoin
 ALLOWED_HOSTS.extend(_env_to_list("ALLOWED_HOSTS"))
 
-CSRF_TRUSTED_ORIGINS = _env_to_list("CSRF_TRUSTED_ORIGINS")
-if vercel_url:
-    CSRF_TRUSTED_ORIGINS.append(f"https://{vercel_url}")
-if netlify_site_url:
-    CSRF_TRUSTED_ORIGINS.append(netlify_site_url.rstrip("/"))
+
+
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
@@ -180,7 +170,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR.parent / "static"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/accounts/login/'
