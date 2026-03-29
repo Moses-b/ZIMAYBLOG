@@ -6,16 +6,19 @@ services:
     branch: main
     root: zimayblog
     buildCommand: pip install -r requirements.txt
+    postBuildCommand: python manage.py migrate --noinput
     startCommand: gunicorn zimayblog.wsgi:app --workers 3 --log-file -
     envVars:
       - key: DISABLE_COLLECTSTATIC
         value: 1
-      - key: 5c45a452b4215653605be0cc2f783681
+      - key: SECRET_KEY
         value: "replace-this-with-production-secret"
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
         value: "*.onrender.com"
+      - key: DATABASE_URL
+        value: "your-postgresql-url-here"
 
 # Note:
 # 1. Configure DATABASE_URL in Render as PostgreSQL managed service, and migrate with `python manage.py migrate`.
