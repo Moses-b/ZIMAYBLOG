@@ -5,6 +5,9 @@ Scripts/
 pyvenv.cfg
 CACHEDIR.TAG
 
+# Static files collected for production
+static/
+
 # Python cache / tooling
 __pycache__/
 *.py[cod]
