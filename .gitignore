@@ -1,0 +1,22 @@
+# Virtual environment created at repository root
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+CACHEDIR.TAG
+
+# Python cache / tooling
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# Local environment files
+.env
+.env.*
+
+# Local database (production should use external Postgres)
+zimayblog/db.sqlite3

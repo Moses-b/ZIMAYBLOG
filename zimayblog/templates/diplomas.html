@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ ui.diplomas_title }}{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="section-tag">{{ ui.diplomas_title }}</div>
+  <h1>{{ ui.diplomas_heading }}</h1>
+  <div class="contact-actions" style="margin-top: 18px;">
+    <a class="btn btn-secondary{% if not selected_diploma_category %} btn-primary{% endif %}" href="/diplomas/">All</a>
+    {% for category in diploma_categories %}
+      <a class="btn btn-secondary{% if selected_diploma_category == category.slug %} btn-primary{% endif %}" href="/diplomas/?category={{ category.slug }}">{{ category.name }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block">
+  {% if diplomas %}
+    <div class="blog-grid reveal">
+      {% for diploma in diplomas %}
+        <article class="feature-card">
+          {% if diploma.image_url %}
+            <a href="{{ diploma.link_url }}" target="_blank" rel="noreferrer">
+              <img class="project-card-media" src="{{ diploma.image_url }}" alt="{{ diploma.title }}" />
+            </a>
+          {% endif %}
+          <div class="preview-badge">{{ diploma.date }}</div>
+          {% if diploma.category %}
+            <span class="pill">{{ diploma.category }}</span>
+          {% endif %}
+          <h3 style="margin-top: 10px;">{{ diploma.title }}</h3>
+          <p style="margin-top: 8px;">{{ diploma.issuer }}</p>
+          <p style="margin-top: 8px;">{{ diploma.summary }}</p>
+          <a class="btn btn-secondary" style="margin-top: 14px;" href="{{ diploma.link_url }}" target="_blank" rel="noreferrer">{{ diploma.cta }}</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="feature-card">
+      <p>{{ ui.diplomas_empty }}</p>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

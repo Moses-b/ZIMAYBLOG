@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% block title %}{{ ui.courses_title }}{% endblock %}
+{% block extra_head %}
+  <style>
+    .courses-hero-center {
+      text-align: center;
+      display: grid;
+      justify-items: center;
+    }
+    .courses-hero-center .section-intro {
+      max-width: 760px;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+<section class="page-hero courses-hero-center">
+  <div class="section-tag">{{ ui.courses_title }}</div>
+  <h1>{{ ui.courses_heading }}</h1>
+  <p class="section-intro">{{ ui.courses_intro }}</p>
+</section>
+
+<section class="section-block">
+  <div class="course-shell">
+    <div class="course-main">
+      {% if selected_video %}
+        <div class="feature-card">
+          <div class="section-tag">{{ selected_video.category.name }}</div>
+          <h2 style="margin-top: 10px;">{{ selected_video.title }}</h2>
+          {% if selected_video.description %}
+            <p style="margin-top: 10px;">{{ selected_video.description }}</p>
+          {% endif %}
+          <div style="margin-top: 18px;">
+            <iframe
+              id="course-player"
+              width="100%"
+              height="420"
+              src="{{ selected_video.embed_url }}"
+              title="{{ selected_video.title }}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <form method="post" action="/courses/" style="margin-top: 16px;">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="toggle_watched">
+            <input type="hidden" name="video_id" value="{{ selected_video.id }}">
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <button class="btn btn-secondary" type="submit">
+              {% if selected_video.id in watched_ids %}{{ ui.courses_mark_undo }}{% else %}{{ ui.courses_mark_done }}{% endif %}
+            </button>
+          </form>
+          <div id="video-fallback" class="course-video-fallback">
+            <p>La video n'est pas lisible en embed. Ouvrez-la directement sur YouTube.</p>
+            <a class="btn btn-secondary" href="{{ selected_video.watch_url }}" target="_blank" rel="noreferrer">Regarder sur YouTube</a>
+          </div>
+        </div>
+
+        <div class="feature-card" style="margin-top: 24px;">
+          <div class="section-tag">{{ ui.courses_comments_title }}</div>
+          <form class="contact-form" method="post" action="/courses/">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="comment">
+            <input type="hidden" name="video_id" value="{{ selected_video.id }}">
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <textarea name="content" rows="4" placeholder="{{ ui.courses_comment_placeholder }}" required></textarea>
+            <button class="btn btn-primary" type="submit">{{ ui.courses_comment_submit }}</button>
+          </form>
+          <div class="course-comments">
+            {% for comment in comments %}
+              <div class="course-comment">
+                <div class="course-comment-header">
+                  <div class="course-avatar">{{ comment.user.username|slice:":1"|upper }}</div>
+                  <div>
+                    <strong>{{ comment.user.username }}</strong>
+                    <span>{{ comment.created_at }}</span>
+                  </div>
+                </div>
+                <p>{{ comment.content }}</p>
+                <form method="post" action="/courses/" class="course-like-form">
+                  {% csrf_token %}
+                  <input type="hidden" name="action" value="toggle_like">
+                  <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                  <button class="btn btn-secondary" type="submit">
+                    {% if comment.id in liked_comment_ids %}{{ ui.courses_unlike }}{% else %}{{ ui.courses_like }}{% endif %} ({{ comment.likes.count }})
+                  </button>
+                </form>
+              </div>
+            {% empty %}
+              <p class="course-empty">{{ ui.courses_comment_empty }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <div class="feature-card">
+          <p>{{ ui.courses_empty }}</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <aside class="course-sidebar feature-card">
+      <div class="section-tag">{{ ui.courses_title }}</div>
+      {% for entry in categories %}
+        <div class="course-category{% if entry.category.id == selected_category_id %} is-active{% endif %}">
+          <div class="course-category-header">
+            <strong>{{ entry.category.name }}</strong>
+            <span>{{ entry.watched_count }}/{{ entry.total_count }}</span>
+          </div>
+          <div class="course-progress">
+            <div class="course-progress-bar" style="width: {{ entry.progress_pct }}%;"></div>
+          </div>
+          {% if entry.total_count == 0 %}
+            <p class="course-empty">{{ ui.courses_empty }}</p>
+          {% endif %}
+          {% if entry.videos %}
+            <div class="course-video-list">
+              {% for video in entry.videos %}
+                <a class="course-video-link{% if selected_video and video.id == selected_video.id %} is-current{% endif %}" href="/courses/?video={{ video.id }}">
+                  <img class="course-thumb" src="{{ video.thumbnail_url }}" alt="{{ video.title }}">
+                  <span>{{ video.title }}</span>
+                  {% if video.id in watched_ids %}
+                    <span class="course-badge">OK</span>
+                  {% endif %}
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% for item in entry.subcategories.values %}
+            {% if item.videos %}
+              <div class="course-subcategory">{{ item.subcategory.name }}</div>
+              <div class="course-video-list">
+                {% for video in item.videos %}
+                  <a class="course-video-link{% if selected_video and video.id == selected_video.id %} is-current{% endif %}" href="/courses/?video={{ video.id }}">
+                    <img class="course-thumb" src="{{ video.thumbnail_url }}" alt="{{ video.title }}">
+                    <span>{{ video.title }}</span>
+                    {% if video.id in watched_ids %}
+                      <span class="course-badge">OK</span>
+                    {% endif %}
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </aside>
+  </div>
+</section>
+{% if selected_video %}
+  <script>
+    const courseVideoId = "{{ selected_video.id }}";
+    const courseNextUrl = "{{ request.get_full_path }}";
+    let courseMarked = false;
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return "";
+    }
+    function markWatched() {
+      const csrf = getCookie("csrftoken");
+      if (!csrf) return;
+      fetch("/courses/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRFToken": csrf,
+        },
+        body: new URLSearchParams({
+          action: "mark_watched",
+          video_id: courseVideoId,
+          next: courseNextUrl,
+        }),
+      });
+    }
+    function onYouTubeIframeAPIReady() {
+      const player = new YT.Player("course-player", {
+        events: {
+          onReady: () => {
+            try {
+              player.mute();
+              player.playVideo();
+            } catch (e) {}
+            const progressTimer = setInterval(() => {
+              if (courseMarked) return;
+              const duration = player.getDuration ? player.getDuration() : 0;
+              const current = player.getCurrentTime ? player.getCurrentTime() : 0;
+              if (duration > 0 && current / duration >= 0.8) {
+                courseMarked = true;
+                markWatched();
+                clearInterval(progressTimer);
+              }
+            }, 2000);
+          },
+          onStateChange: (event) => {
+            if (event.data === YT.PlayerState.ENDED) {
+              if (!courseMarked) {
+                courseMarked = true;
+                markWatched();
+              }
+            }
+          },
+          onError: () => {
+            const fallback = document.getElementById("video-fallback");
+            if (fallback) fallback.classList.add("is-visible");
+          },
+        },
+      });
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    } else {
+      onYouTubeIframeAPIReady();
+    }
+  </script>
+{% endif %}
+{% endblock %}
