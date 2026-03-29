@@ -10,7 +10,7 @@ services:
     envVars:
       - key: DISABLE_COLLECTSTATIC
         value: 1
-      - key: SECRET_KEY
+      - key: 5c45a452b4215653605be0cc2f783681
         value: "replace-this-with-production-secret"
       - key: DEBUG
         value: "False"
