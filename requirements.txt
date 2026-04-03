@@ -3,7 +3,7 @@ distlib==0.4.0
 Django==6.0.3
 filelock==3.25.2
 gunicorn==25.3.0
-psycopg2-binary==2.9.9
+psycopg[binary]==3.3.3
 packaging==26.0
 platformdirs==4.9.4
 python-discovery==1.1.3

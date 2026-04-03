@@ -3,6 +3,7 @@ Include/
 Lib/
 Scripts/
 pyvenv.cfg
+.venv/
 CACHEDIR.TAG
 
 # Static files collected for production (root only)
