@@ -16,6 +16,8 @@ services:
         value: "zimayblog.onrender.com"
       - key: CSRF_TRUSTED_ORIGINS
         value: "https://zimayblog.onrender.com"
+      - key: PYTHONPATH
+        value: "/opt/render/project/src"
 
 # Note:
 # 1. Configure DATABASE_URL in Render as PostgreSQL managed service.
@@ -28,4 +30,4 @@ services:
 # - DJANGO_SETTINGS_MODULE: zimayblog.settings
 # - WSGI module: zimayblog.wsgi (variable: application)
 # - Alternative: gunicorn zimayblog.wsgi:application
-# - Render uses Procfile for deployment, which now uses app.wsgi:app
+# - Render uses this render.yaml configuration for deploys
