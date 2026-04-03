@@ -45,3 +45,25 @@ python manage.py runserver
 - Static files are properly collected
 - Database migrations are applied
 - HTTPS enforced
+# Deploiement Render (guide rapide)
+
+1. Repo branche `main` sur Render.
+2. Settings Render:
+   - Root Directory: `.`
+   - Build Command: `pip install -r requirements.txt && python manage.py collectstatic --noinput`
+   - Start Command: `python manage.py migrate --noinput && gunicorn zimayblog.wsgi:application`
+3. Variables d'environnement Render:
+   - `SECRET_KEY` (obligatoire)
+   - `DJANGO_DEBUG=False`
+   - `ALLOWED_HOSTS=zimayblog.onrender.com`
+   - `CSRF_TRUSTED_ORIGINS=https://zimayblog.onrender.com`
+   - `DATABASE_URL` (fourni par Render si Postgres)
+4. Redeploy.
+
+# Lancer en local
+
+```bash
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
