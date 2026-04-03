@@ -337,7 +337,7 @@ def home(request):
         "posts": get_public_posts(language)[:4],
         "credentials": credentials,
         "featured_video": featured_video,
-        "portfolio_url": "https://zimaymoseszegbah-portofolio.netlify.app/",
+        "portfolio_url": "https://www.tiktok.com/@zacofficiel225",
         "cv_url": "blog/assets/docs/moses-zegbah-zimay-cv.pdf",
         "ui": ui,
         "copy": copy,

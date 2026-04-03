@@ -95,6 +95,45 @@
       justify-content: space-between;
       gap: 20px;
     }
+    .nav-panel {
+      display: contents;
+    }
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: var(--soft-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+    .nav-toggle:hover, .nav-toggle:focus-visible { transform: translateY(-1px); border-color: var(--line-strong); }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      position: relative;
+    }
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
+    .nav-toggle span::before { top: -7px; }
+    .nav-toggle span::after { top: 7px; }
+    .nav.is-open .nav-toggle span { background: transparent; }
+    .nav.is-open .nav-toggle span::before { transform: translateY(7px) rotate(45deg); }
+    .nav.is-open .nav-toggle span::after { transform: translateY(-7px) rotate(-45deg); }
     .brand {
       display: inline-flex;
       align-items: center;
@@ -420,6 +459,39 @@
       gap: 18px;
       margin-top: 24px;
     }
+    .identity-band {
+      display: grid;
+      gap: 12px;
+      padding: 22px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line-strong);
+      background: linear-gradient(135deg, rgba(0, 245, 140, 0.16), rgba(255, 255, 255, 0.04));
+      box-shadow: var(--shadow);
+    }
+    .identity-band h2 { max-width: 24ch; }
+    .identity-list {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .identity-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .identity-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--neon), var(--neon-soft));
+      box-shadow: 0 0 10px rgba(0, 245, 140, 0.5);
+      flex: none;
+    }
     .credential-card {
       display: grid;
       grid-template-rows: auto 1fr;
@@ -436,12 +508,27 @@
       overflow: hidden;
       border-bottom: 1px solid var(--line);
       background: linear-gradient(135deg, rgba(0, 245, 140, 0.12), rgba(255, 255, 255, 0.04));
+      padding: 10px;
+    }
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 8, 22, 0.65);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+      z-index: 15;
+    }
+    .nav.is-open ~ .nav-overlay {
+      opacity: 1;
+      pointer-events: auto;
     }
     .credential-card img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      background: #0b111c;
       transition: transform 240ms ease;
     }
     .credential-card:hover img, .credential-card:focus-within img {
@@ -530,6 +617,15 @@
       background: linear-gradient(135deg, rgba(0, 245, 140, 0.14), rgba(255, 255, 255, 0.05));
       margin-bottom: 14px;
     }
+    .diploma-card { display: grid; gap: 8px; }
+    .diploma-media {
+      height: 240px;
+      object-fit: contain;
+      padding: 12px;
+      background: #0b111c;
+    }
+    .diplomas-grid { align-items: start; }
+    .portfolio-card { align-self: center; }
     .project-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .project-actions .btn { min-height: 42px; }
     .course-shell { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.55fr); gap: 24px; align-items: start; }
@@ -701,9 +797,43 @@
     }
     @media (max-width: 760px) {
       main { padding: 24px 0 64px; }
-      .nav { padding: 12px 0; gap: 12px; flex-direction: column; }
-      .brand { width: 100%; justify-content: center; }
-      .nav-links, .nav-actions { width: 100%; }
+      .nav {
+        padding: 12px 0;
+        gap: 12px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .brand { flex: 1 1 auto; justify-content: flex-start; }
+      .nav-toggle { display: inline-flex; }
+      .nav-panel {
+        position: fixed;
+        top: 70px;
+        right: 16px;
+        width: min(340px, 86vw);
+        max-height: calc(100vh - 96px);
+        display: grid;
+        gap: 16px;
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid var(--line-strong);
+        background: linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
+        box-shadow: var(--shadow);
+        transform: translateX(120%) scale(0.98);
+        opacity: 0;
+        filter: blur(6px);
+        transition: transform 260ms ease, opacity 240ms ease, filter 240ms ease;
+        overflow: auto;
+        z-index: 20;
+      }
+      .nav.is-open .nav-panel {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+      }
+      .nav-links, .nav-actions {
+        width: 100%;
+      }
       .nav-links { gap: 10px 14px; justify-content: flex-start; }
       .nav-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .nav-actions .btn, .nav-actions .theme-toggle, .nav-actions .lang-switcher { width: 100%; min-height: 44px; }
@@ -719,6 +849,8 @@
       .project-filter-link { width: 100%; }
       .project-actions { display: grid; grid-template-columns: 1fr; }
       .project-card-media { height: 190px; }
+      .diploma-media { height: 210px; }
+      .portfolio-card { align-self: stretch; }
       .footer-main { grid-template-columns: 1fr; padding: 24px 18px; }
       .footer-bottom { padding: 14px 18px 18px; flex-direction: column; align-items: flex-start; }
       .footer-top-link { width: 100%; }
@@ -757,7 +889,11 @@
         <span class="brand-mark" aria-hidden="true"></span>
         <span>Moses Zimay</span>
       </a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span>
+      </button>
+      <div class="nav-panel" id="site-menu">
+        <div class="nav-links">
         <div class="nav-dropdown" tabindex="0">
           <a class="nav-label" href="/#about">{{ ui.nav_about }}</a>
           <div class="nav-dropdown-panel">
@@ -789,8 +925,8 @@
             {% endif %}
         </div>
         <a href="/blog/">{{ ui.nav_blog }}</a>
-      </div>
-      <div class="nav-actions">
+        </div>
+        <div class="nav-actions">
         <form class="lang-switcher" method="post" action="{% url 'set_language' %}" aria-label="{{ ui.language_switcher }}">
           {% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}">
@@ -813,8 +949,10 @@
         </button>
         <a class="btn btn-secondary" href="https://api.whatsapp.com/send?text=Hello%20Moses%2C%20I%20would%20like%20to%20discuss%20my%20project." target="_blank" rel="noreferrer">{{ ui.nav_whatsapp }}</a>
         <a class="btn btn-primary" href="/#contact">{{ ui.nav_get_started }}</a>
+        </div>
       </div>
     </nav>
+    <div class="nav-overlay" aria-hidden="true"></div>
   </header>
   <div class="site-shell">
     {% if messages %}
@@ -903,6 +1041,34 @@
       document.body.dataset.theme = nextTheme;
       localStorage.setItem("zimay-theme", nextTheme);
       updateThemeToggle();
+    });
+
+    const nav = document.querySelector(".nav");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navPanel = document.getElementById("site-menu");
+    const navOverlay = document.querySelector(".nav-overlay");
+    const closeNav = () => {
+      nav?.classList.remove("is-open");
+      navToggle?.setAttribute("aria-expanded", "false");
+      navToggle?.setAttribute("aria-label", "Open menu");
+    };
+    navToggle?.addEventListener("click", () => {
+      const isOpen = nav?.classList.toggle("is-open");
+      navToggle?.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      navToggle?.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+    navPanel?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 760) {
+          closeNav();
+        }
+      });
+    });
+    navOverlay?.addEventListener("click", closeNav);
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) {
+        closeNav();
+      }
     });
   </script>
   {% block extra_scripts %}{% endblock %}

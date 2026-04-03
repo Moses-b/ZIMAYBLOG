@@ -53,8 +53,21 @@
 </section>
 
 <section class="section-block">
+  <div class="identity-band reveal">
+    <div class="section-tag">{{ copy.identity_tag }}</div>
+    <h2>{{ copy.identity_heading }}</h2>
+    <p class="section-intro">{{ copy.identity_intro }}</p>
+    <ul class="identity-list">
+      {% for item in copy.identity_points %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section-block">
   <div class="split-grid">
-    <div class="feature-card reveal">
+    <div class="feature-card reveal portfolio-card">
       <div class="section-tag">{{ copy.credibility_tag }}</div>
       <h2>{{ copy.credibility_heading }}</h2>
       <div class="contact-actions" style="margin-top: 14px; margin-bottom: 14px;">

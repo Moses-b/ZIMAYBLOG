@@ -14,12 +14,12 @@
 
 <section class="section-block">
   {% if diplomas %}
-    <div class="blog-grid reveal">
+    <div class="blog-grid reveal diplomas-grid">
       {% for diploma in diplomas %}
-        <article class="feature-card">
+        <article class="feature-card diploma-card">
           {% if diploma.image_url %}
             <a href="{{ diploma.link_url }}" target="_blank" rel="noreferrer">
-              <img class="project-card-media" src="{{ diploma.image_url }}" alt="{{ diploma.title }}" />
+              <img class="project-card-media diploma-media" src="{{ diploma.image_url }}" alt="{{ diploma.title }}" />
             </a>
           {% endif %}
           <div class="preview-badge">{{ diploma.date }}</div>

@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('accounts/activate/<uidb64>/<token>/', views.activate_account, name='activate_account'),
     path('accounts/logout/', LogoutView.as_view(next_page="/"), name='logout'),
+    path('home.html', views.home, name='home_html'),
     path('diplomas/', views.diplomas, name='diplomas'),
     path('projects/', views.projects, name='projects'),
     path('projects/weather-live/', views.weather_project_live, name='weather_project_live'),

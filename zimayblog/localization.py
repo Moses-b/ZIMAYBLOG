@@ -255,9 +255,9 @@ HOME_CONTENT = {
     "en": {
         "page_title": "Moses Zegbah Zimay | Premium Consultant for Finance, Security & E-commerce",
         "meta_description": "Premium consulting in Ivory Coast for accounting, compliance, digital security, WordPress, Shopify and business growth across Africa.",
-        "hero_tag": "Secure Finance. Smart Growth.",
-        "hero_heading": "Build a stronger business with compliance, digital security and premium execution.",
-        "hero_intro": "Moses Zegbah Zimay helps African SMEs, NGOs, founders and international organizations strengthen accounting operations, secure digital assets, launch high-converting websites and structure scalable business growth.",
+        "hero_tag": "Professional accountant. Freelance digital consultant.",
+        "hero_heading": "Accounting rigor first, then secure digital execution for growth.",
+        "hero_intro": "Moses Zegbah Zimay is a trained accountant. In parallel, he delivers freelance support in digital security, WordPress/Shopify, and business growth for African SMEs, NGOs, founders and international teams.",
         "hero_primary_cta": "Book a consultation",
         "hero_secondary_cta": "Explore services",
         "hero_cv_cta": "Download CV",
@@ -265,8 +265,8 @@ HOME_CONTENT = {
         "status_cards": [
             {
                 "label": "Core positioning",
-                "title": "Hybrid consultant for finance and digital performance",
-                "text": "Rare expertise spanning accounting discipline, web delivery, cybersecurity awareness and e-commerce advisory.",
+                "title": "Accountant by profession, digital freelance by execution",
+                "text": "Clear accounting discipline, complemented by web delivery, cybersecurity awareness and e-commerce advisory.",
             },
             {
                 "label": "High-trust sectors",
@@ -288,7 +288,7 @@ HOME_CONTENT = {
         "portfolio_tag": "Portfolio",
         "portfolio_heading": "Existing digital presence available online.",
         "portfolio_intro": "Moses already has a live online portfolio. This site now complements that presence with a stronger premium consulting narrative, tighter positioning and better business conversion structure.",
-        "portfolio_primary_cta": "Open portfolio",
+        "portfolio_primary_cta": "View TikTok",
         "portfolio_secondary_cta": "View diplomas",
         "portfolio_points": [
             "Better positioning for NGOs, SMEs, international organizations and founders",
@@ -296,8 +296,8 @@ HOME_CONTENT = {
             "Stronger proof stack through credential and downloadable CV access",
         ],
         "about_tag": "About",
-        "about_heading": "Credibility built at the intersection of finance discipline and digital execution.",
-        "about_intro": "Moses Zegbah Zimay is a consultant based in Ivory Coast with a profile that is especially valuable for organizations operating in complex, high-trust environments. His background includes accounting support, compliance awareness, digital security thinking and website delivery for business growth.",
+        "about_heading": "A professional accountant with freelance digital execution.",
+        "about_intro": "Based in Ivory Coast, Moses Zegbah Zimay is a trained accountant. He also works as a freelance consultant for digital security, WordPress/Shopify projects and business growth, making him especially valuable for high-trust environments.",
         "about_points": [
             "Accounting Assistant experience at the Inter-African Coffee Organization",
             "Exposure to multi-currency accounting environments including XOF and EUR",
@@ -305,8 +305,16 @@ HOME_CONTENT = {
             "Working knowledge of OHADA, SYCEBNL and IFRS-oriented environments",
         ],
         "authority_tag": "Authority Snapshot",
-        "authority_heading": "Trusted for operations that must be both clean and secure.",
-        "authority_text": "Whether the challenge is a donor-facing finance process, a business website that needs more credibility, or a digital operation that needs stronger protection, the focus remains the same: create systems that are reliable, professional and growth-ready.",
+        "authority_heading": "Trusted for clean accounting and secure digital execution.",
+        "authority_text": "Whether the challenge is a finance process, a business website that needs more credibility, or a digital operation that needs stronger protection, the focus remains the same: build systems that are reliable, professional and growth-ready.",
+        "identity_tag": "Professional Identity",
+        "identity_heading": "Accountant by profession, freelance for digital delivery.",
+        "identity_intro": "The accounting role anchors credibility and compliance. The freelance side brings practical execution across security, web and e-commerce.",
+        "identity_points": [
+            "Core profession: Accounting, compliance and financial discipline",
+            "Freelance execution: WordPress, Shopify, digital security and growth support",
+            "Best for: NGOs, SMEs and founders who need trust plus delivery"
+        ],
         "authority_badges": ["Finance and Compliance", "Digital Security", "WordPress and Shopify", "Business Advisory"],
         "services_tag": "Services",
         "services_heading": "Premium services designed for trust, resilience and measurable business progress.",
@@ -366,9 +374,9 @@ HOME_CONTENT = {
     "fr": {
         "page_title": "Moses Zegbah Zimay | Consultant premium en finance, securite et e-commerce",
         "meta_description": "Conseil premium en Cote d'Ivoire pour la comptabilite, la conformite, la securite numerique, WordPress, Shopify et la croissance en Afrique.",
-        "hero_tag": "Finance securisee. Croissance intelligente.",
-        "hero_heading": "Construisez une entreprise plus solide avec la conformite, la securite numerique et une execution premium.",
-        "hero_intro": "Moses Zegbah Zimay aide les PME africaines, les ONG, les fondateurs et les organisations internationales a renforcer leurs operations comptables, securiser leurs actifs numeriques, lancer des sites web performants et structurer une croissance durable.",
+        "hero_tag": "Comptable de profession. Consultant digital freelance.",
+        "hero_heading": "La rigueur comptable d'abord, puis une execution digitale securisee.",
+        "hero_intro": "Moses Zegbah Zimay est comptable de profession. En parallele, il intervient en freelance en securite numerique, WordPress/Shopify et croissance business pour les PME africaines, les ONG, les fondateurs et les equipes internationales.",
         "hero_primary_cta": "Reserver une consultation",
         "hero_secondary_cta": "Decouvrir les services",
         "hero_cv_cta": "Telecharger le CV",
@@ -376,8 +384,8 @@ HOME_CONTENT = {
         "status_cards": [
             {
                 "label": "Positionnement central",
-                "title": "Consultant hybride en finance et performance digitale",
-                "text": "Une expertise rare qui relie rigueur comptable, creation web, sensibilite cybersecurite et conseil e-commerce.",
+                "title": "Comptable de profession, execution digitale en freelance",
+                "text": "Rigueur comptable d'abord, completee par la creation web, la sensibilite cybersecurite et le conseil e-commerce.",
             },
             {
                 "label": "Secteurs a forte confiance",
@@ -399,7 +407,7 @@ HOME_CONTENT = {
         "portfolio_tag": "Portfolio",
         "portfolio_heading": "Une presence digitale deja disponible en ligne.",
         "portfolio_intro": "Moses possede deja un portfolio en ligne. Ce site renforce cette presence avec un positionnement premium plus clair, une proposition de valeur plus convaincante et un parcours mieux structure pour convertir les visiteurs en clients.",
-        "portfolio_primary_cta": "Ouvrir le portfolio",
+        "portfolio_primary_cta": "Voir TikTok",
         "portfolio_secondary_cta": "Voir diplomes",
         "portfolio_points": [
             "Un meilleur positionnement pour les ONG, les PME, les organisations internationales et les fondateurs",
@@ -407,8 +415,8 @@ HOME_CONTENT = {
             "Des preuves plus solides via les certificats et le CV telechargeable",
         ],
         "about_tag": "A propos",
-        "about_heading": "Une credibilite construite au croisement de la rigueur financiere et de l'execution digitale.",
-        "about_intro": "Moses Zegbah Zimay est un consultant base en Cote d'Ivoire avec un profil particulierement utile aux organisations qui evoluent dans des environnements complexes et sensibles a la confiance. Son parcours couvre l'appui comptable, la conformite, la securite numerique et la creation de sites au service de la croissance.",
+        "about_heading": "Comptable de profession et execution digitale en freelance.",
+        "about_intro": "Base en Cote d'Ivoire, Moses Zegbah Zimay est comptable de profession. En parallele, il travaille en freelance en securite numerique, WordPress/Shopify et croissance business, un profil utile aux organisations sensibles a la confiance.",
         "about_points": [
             "Experience d'assistant comptable a l'Organisation Interafricaine du Cafe",
             "Exposition a des environnements comptables multi-devises incluant XOF et EUR",
@@ -416,8 +424,16 @@ HOME_CONTENT = {
             "Connaissance pratique des environnements OHADA, SYCEBNL et IFRS",
         ],
         "authority_tag": "Resume d'autorite",
-        "authority_heading": "Une expertise de confiance pour des operations qui doivent etre propres et securisees.",
+        "authority_heading": "Une expertise de confiance pour la compta et le digital.",
         "authority_text": "Qu'il s'agisse d'un processus financier lie a des bailleurs, d'un site web qui doit gagner en credibilite ou d'une operation digitale qui a besoin de plus de protection, l'objectif reste le meme : creer des systemes fiables, professionnels et prets pour la croissance.",
+        "identity_tag": "Identite pro",
+        "identity_heading": "Comptable de profession, freelance pour le digital.",
+        "identity_intro": "La comptabilite ancre la credibilite et la conformite. Le freelance apporte l'execution pratique en securite, web et e-commerce.",
+        "identity_points": [
+            "Metier principal : comptabilite, conformite et rigueur financiere",
+            "Execution freelance : WordPress, Shopify, securite numerique et croissance",
+            "Ideal pour : ONG, PME et fondateurs qui veulent confiance + delivery"
+        ],
         "authority_badges": ["Finance et conformite", "Securite numerique", "WordPress et Shopify", "Conseil business"],
         "services_tag": "Services",
         "services_heading": "Des services premium pensés pour la confiance, la resilience et une progression business mesurable.",
