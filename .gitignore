@@ -5,9 +5,9 @@ Scripts/
 pyvenv.cfg
 CACHEDIR.TAG
 
-# Static files collected for production
-static/
-staticfiles/
+# Static files collected for production (root only)
+/static/
+/staticfiles/
 
 # Python cache / tooling
 __pycache__/
@@ -23,4 +23,5 @@ __pycache__/
 .env.*
 
 # Local database (production should use external Postgres)
+db.sqlite3
 zimayblog/db.sqlite3

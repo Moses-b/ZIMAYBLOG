@@ -10,22 +10,81 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from urllib.parse import parse_qs, unquote, urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+def _env_to_bool(name, default=False):
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _env_to_list(name):
+    raw = os.getenv(name, "")
+    return [item.strip() for item in raw.split(",") if item.strip()]
+
+
+def _database_from_env():
+    database_url = os.getenv("DATABASE_URL") or os.getenv("POSTGRES_URL")
+    if not database_url:
+        return None
+
+    parsed = urlparse(database_url)
+    if parsed.scheme.lower() not in {"postgres", "postgresql"}:
+        raise ValueError("DATABASE_URL/POSTGRES_URL must use postgres:// or postgresql://")
+
+    query = parse_qs(parsed.query)
+    return {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": parsed.path.lstrip("/"),
+        "USER": unquote(parsed.username or ""),
+        "PASSWORD": unquote(parsed.password or ""),
+        "HOST": parsed.hostname or "",
+        "PORT": str(parsed.port or ""),
+        "CONN_MAX_AGE": 0 if os.getenv("VERCEL") else 60,
+        "OPTIONS": {
+            "sslmode": query.get("sslmode", ["require"])[0],
+        },
+    }
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-65l*e6v=#aq*rb9q-78#pr#u5h3urvjl#+zz#v0&ivz2n+$2xn'
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-65l*e6v=#aq*rb9q-78#pr#u5h3urvjl#+zz#v0&ivz2n+$2xn",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = _env_to_bool("DJANGO_DEBUG", default=True)
+IS_PRODUCTION = _env_to_bool("DJANGO_PRODUCTION", default=not DEBUG)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["zimayblog.onrender.com", "127.0.0.1", "localhost"]
+# Vous pouvez utiliser la variable d'environnement ALLOWED_HOSTS pour ajouter d'autres hotes si besoin
+ALLOWED_HOSTS.extend(_env_to_list("ALLOWED_HOSTS"))
+
+CSRF_TRUSTED_ORIGINS = _env_to_list("CSRF_TRUSTED_ORIGINS")
+
+# Security settings for production
+SECURE_SSL_REDIRECT = _env_to_bool("SECURE_SSL_REDIRECT", default=IS_PRODUCTION)
+SECURE_HSTS_SECONDS = 31536000 if IS_PRODUCTION else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = IS_PRODUCTION
+SECURE_HSTS_PRELOAD = IS_PRODUCTION
+SESSION_COOKIE_SECURE = _env_to_bool("SESSION_COOKIE_SECURE", default=IS_PRODUCTION)
+CSRF_COOKIE_SECURE = _env_to_bool("CSRF_COOKIE_SECURE", default=IS_PRODUCTION)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 
 # Application definition
@@ -42,6 +101,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -73,12 +133,16 @@ WSGI_APPLICATION = 'zimayblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+database_from_env = _database_from_env()
+if database_from_env:
+    DATABASES = {"default": database_from_env}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 
 # Password validation
@@ -115,4 +179,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/courses/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Dev-friendly email backend for activation links (prints emails in console).
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+
+# Starting development server at http://127.0.0.1:8000/

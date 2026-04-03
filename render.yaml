@@ -4,24 +4,21 @@ services:
     env: python
     region: oregon
     branch: main
-    root: zimayblog
-    buildCommand: pip install -r requirements.txt
-    postBuildCommand: python manage.py migrate --noinput
-    startCommand: gunicorn zimayblog.wsgi:app --workers 3 --log-file -
+    root: .
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: python manage.py migrate --noinput && gunicorn zimayblog.wsgi:application
     envVars:
-      - key: DISABLE_COLLECTSTATIC
-        value: 1
       - key: SECRET_KEY
-        value: "replace-this-with-production-secret"
-      - key: DEBUG
+        value: "django-insecure-65l*e6v=#aq*rb9q-78#pr#u5h3urvjl#+zz#v0&ivz2n+$2xn"
+      - key: DJANGO_DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: "*.onrender.com"
-      - key: DATABASE_URL
-        value: "your-postgresql-url-here"
+        value: "zimayblog.onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://zimayblog.onrender.com"
 
 # Note:
-# 1. Configure DATABASE_URL in Render as PostgreSQL managed service, and migrate with `python manage.py migrate`.
+# 1. Configure DATABASE_URL in Render as PostgreSQL managed service.
 # 2. Set SECRET_KEY and other sensitive env vars in Render dashboard.
 # 3. Enable SSL redirection if needed and set `SECURE_SSL_REDIRECT=True` in env.
 
@@ -29,6 +26,6 @@ services:
 # - The Django app is named 'app'
 # - INSTALLED_APPS in settings.py: 'app'
 # - DJANGO_SETTINGS_MODULE: zimayblog.settings
-# - WSGI module: app.wsgi (variable: app)
+# - WSGI module: zimayblog.wsgi (variable: application)
 # - Alternative: gunicorn zimayblog.wsgi:application
 # - Render uses Procfile for deployment, which now uses app.wsgi:app
