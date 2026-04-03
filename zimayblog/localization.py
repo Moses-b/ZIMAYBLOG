@@ -288,8 +288,8 @@ HOME_CONTENT = {
         "portfolio_tag": "Portfolio",
         "portfolio_heading": "Existing digital presence available online.",
         "portfolio_intro": "Moses already has a live online portfolio. This site now complements that presence with a stronger premium consulting narrative, tighter positioning and better business conversion structure.",
-        "portfolio_primary_cta": "View diplomas",
-        "portfolio_secondary_cta": "Open CV PDF",
+        "portfolio_primary_cta": "Open portfolio",
+        "portfolio_secondary_cta": "View diplomas",
         "portfolio_points": [
             "Better positioning for NGOs, SMEs, international organizations and founders",
             "Clearer offer packaging for websites, maintenance, compliance and advisory",
@@ -399,8 +399,8 @@ HOME_CONTENT = {
         "portfolio_tag": "Portfolio",
         "portfolio_heading": "Une presence digitale deja disponible en ligne.",
         "portfolio_intro": "Moses possede deja un portfolio en ligne. Ce site renforce cette presence avec un positionnement premium plus clair, une proposition de valeur plus convaincante et un parcours mieux structure pour convertir les visiteurs en clients.",
-        "portfolio_primary_cta": "Voir diplomes",
-        "portfolio_secondary_cta": "Ouvrir le CV PDF",
+        "portfolio_primary_cta": "Ouvrir le portfolio",
+        "portfolio_secondary_cta": "Voir diplomes",
         "portfolio_points": [
             "Un meilleur positionnement pour les ONG, les PME, les organisations internationales et les fondateurs",
             "Des offres plus claires pour les sites web, la maintenance, la conformite et le conseil",

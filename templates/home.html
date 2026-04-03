@@ -86,8 +86,8 @@
       <h3>{{ copy.portfolio_heading }}</h3>
       <p>{{ copy.portfolio_intro }}</p>
       <div class="contact-actions" style="margin-top: 22px;">
-        <a class="btn btn-primary" href="/diplomas/">{{ copy.portfolio_primary_cta }}</a>
-        <a class="btn btn-secondary" href="{% static cv_url %}" target="_blank" rel="noreferrer">{{ copy.portfolio_secondary_cta }}</a>
+        <a class="btn btn-primary" href="{{ portfolio_url }}" target="_blank" rel="noreferrer">{{ copy.portfolio_primary_cta }}</a>
+        <a class="btn btn-secondary" href="/diplomas/">{{ copy.portfolio_secondary_cta }}</a>
       </div>
       <ul class="clean-list">
         {% for point in copy.portfolio_points %}
